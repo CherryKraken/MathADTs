@@ -172,16 +172,16 @@ Transpose matrix by inserting the elements at the inverse indices of a new array
 Post:
 	create a new matrix to return (can I re-initialize this to the new matrix?)
 */
-Matrix Matrix::transpose()
+void Matrix::transpose()
 {
 	Matrix t;
-	t.initialze(this->sizey, this->sizex);
+	t.initialize(this->getY(), this->getX());
 	
 	for(int i = 0; i < this->getY; i++)
 		for(int j= 0; j < this->getX; j++)
 			t.matrix[i][j] = this->matrix[j][i];
 	
-	return t;
+	*this = t;
 }
 
 
