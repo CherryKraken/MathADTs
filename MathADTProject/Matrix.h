@@ -8,7 +8,7 @@ using namespace std;
 
 class Matrix
 {
-	vector<vector<int>> matrix;
+	vector<vector<double>> matrix;
 
 public:
 	// Constructors
@@ -17,10 +17,10 @@ public:
 	// Operators
 	Matrix operator+(const Matrix& other);
 	Matrix operator*(const Matrix& other);
-	Matrix operator*(const int& other);
+	Matrix operator*(const double& other);
 	Matrix operator-(const Matrix& other);
 	Matrix operator/(const Matrix& other);
-	Matrix operator/(const int& other);
+	Matrix operator/(const double& other);
 
 	// Methods
 	bool isEmpty() const;
