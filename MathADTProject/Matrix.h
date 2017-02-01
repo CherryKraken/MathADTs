@@ -26,6 +26,7 @@ public:
 	bool isEmpty() const;
 	int getX() const;
 	int getY() const;
+	void transpose();
 
 	// Friends
 	friend ostream& operator<<(ostream& os, const Matrix& m);
