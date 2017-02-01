@@ -19,7 +19,6 @@ public:
 	Matrix operator*(const Matrix& other);
 	Matrix operator*(const double& other);
 	Matrix operator-(const Matrix& other);
-	Matrix operator/(const Matrix& other);
 	Matrix operator/(const double& other);
 
 	// Methods
