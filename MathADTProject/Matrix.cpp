@@ -53,13 +53,13 @@ Matrix Matrix::operator*(const Matrix & other)
 }
 
 
-Matrix Matrix::operator*(const int & other)
+Matrix Matrix::operator*(const double & other)
 {
 	if(this->isEmpty())
 		throw exception("Matrix not initialized");
 
-	for(int i = 0; i < this->matrix.size(); i++)
-		for(int j = 0; j < this->matrix[i].size(); i++)
+	for(int i = 0; i < this->getY(); i++)
+		for(int j = 0; j < this->getX(); i++)
 			this->matrix[i][j] *= other;
 
 	return *this;
@@ -68,13 +68,13 @@ Matrix Matrix::operator*(const int & other)
 
 Matrix Matrix::operator-(const Matrix & other)
 {
-	if(this->matrix.size() != other.matrix.size() || this->matrix[0].size() != other.matrix[0].size())
+	if(this->getY() != other.getY() || this->getX() != other.getX())
 		throw exception("Matrices A and B must have the same dimensions");
 	else if(this->isEmpty() || other.isEmpty())
 		throw exception("Matrix not initialized");
 
-	for(int i = 0; i < other.matrix.size(); i++)
-		for(int j = 0; j < other.matrix[i].size(); i++)
+	for(int i = 0; i < other.getY(); i++)
+		for(int j = 0; j < other.getX(); i++)
 			this->matrix[i][j] -= other.matrix[i][j];
 
 	return *this;
@@ -86,13 +86,14 @@ Matrix Matrix::operator/(const Matrix & other)
 	return Matrix();
 }
 
-Matrix Matrix::operator/(const int & other)
+
+Matrix Matrix::operator/(const double & other)
 {
 	if(this->isEmpty())
 		throw exception("Matrix not initialized");
 
-	for(int i = 0; i < this->matrix.size(); i++)
-		for(int j = 0; j < this->matrix[i].size(); i++)
+	for(int i = 0; i < this->getY(); i++)
+		for(int j = 0; j < this->getX(); i++)
 			this->matrix[i][j] /= other;
 
 	return *this;
@@ -104,10 +105,12 @@ bool Matrix::isEmpty() const
 	return this->matrix.empty();
 }
 
+
 int Matrix::getX() const
 {
 	return matrix[0].size();
 }
+
 
 int Matrix::getY() const
 {
@@ -115,13 +118,27 @@ int Matrix::getY() const
 }
 
 
+Matrix Matrix::transpose()
+{
+	Matrix t;
+	t.initialze(this->sizey, this->sizex);
+	
+	for(int i = 0; i < this->getY; i++)
+		for(int j= 0; j < this->getX; j++)
+			t.matrix[i][j] = this->matrix[j][i];
+	
+	return t;
+}
+
+
 ostream & operator<<(ostream & os, const Matrix & m)
 {
-	for(int i = 0; i < m.matrix.size(); i++)
+	for(int i = 0; i < m.getY(); i++)
 	{
-		for(int j = 0; j < m.matrix[i].size(); i++)
+		for(int j = 0; j < m.getX(); i++)
+		{
 			os << m.matrix[i][j] << " ";
-
+		}
 		os << endl;
 	}
 	return os;
