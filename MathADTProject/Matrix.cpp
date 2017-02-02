@@ -1,4 +1,30 @@
 #include "Matrix.h"
+#include <exception>
+
+using namespace std;
+
+/*
+Initialize and fill the matrix's 2D vector to user input
+Post:
+	matrix is a 2D vector initialized from STDIN
+*/
+void Matrix::initialize()
+{
+	int ysize, xsize;
+	cin >> xsize >> ysize;
+
+	this->matrix.resize(ysize);
+	for(int y = 0; y < ysize; y++)
+		this->matrix[y].resize(xsize);
+
+	for(int y = 0; y < ysize; y++)
+	{
+		for(int x = 0; x < xsize; x++){
+		
+		}
+	}
+}
+
 
 /*
 Initialize the matrix's 2D vector to a given size

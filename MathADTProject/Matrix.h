@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include <exception>
 
 using namespace std;
 
@@ -12,6 +11,7 @@ class Matrix
 
 public:
 	// Constructors
+	void initialize();
 	void initialize(int xsize, int ysize);
 
 	// Operators
