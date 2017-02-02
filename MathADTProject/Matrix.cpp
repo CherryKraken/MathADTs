@@ -226,7 +226,7 @@ ostream & operator<<(ostream & os, const Matrix & m)
 	{
 		for(int j = 0; j < m.getX(); j++)
 		{
-			os << m.matrix[i][j] << " ";
+			os << m.matrix[i][j] << "\t";
 		}
 		os << endl;
 	}

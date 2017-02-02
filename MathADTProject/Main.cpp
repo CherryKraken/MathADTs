@@ -10,9 +10,11 @@ int main()
 	try
 	{
 		Matrix a, b;
-		a.initialize(3, 3);
-		b.initialize(2, 3);
-		cout << a+b;
+		a.initialize();
+		cout << "----------\n";
+		//b.initialize();
+		cout << endl << a;
+		cout << endl << a * 2;
 	}
 	catch(exception e)
 	{
