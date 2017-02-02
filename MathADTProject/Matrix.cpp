@@ -4,7 +4,7 @@
 using namespace std;
 
 /*
-Initialize and fill the matrix's 2D vector to user input
+Initialize and fill the matrix's 2D vector from user input
 Post:
 	matrix is a 2D vector initialized from STDIN
 */
@@ -13,14 +13,16 @@ void Matrix::initialize()
 	int ysize, xsize;
 	cin >> xsize >> ysize;
 
-	this->matrix.resize(ysize);
-	for(int y = 0; y < ysize; y++)
-		this->matrix[y].resize(xsize);
+	this->initialize(xsize, ysize);
+
+	double val;
 
 	for(int y = 0; y < ysize; y++)
 	{
-		for(int x = 0; x < xsize; x++){
-		
+		for(int x = 0; x < xsize; x++)
+		{
+			cin >> val;
+			this->matrix[y][x] = val;
 		}
 	}
 }
@@ -59,7 +61,7 @@ Matrix Matrix::operator+(const Matrix & other)
 		throw exception("Matrices A and B must have the same dimensions");
 
 	for(int i = 0; i < other.getY(); i++)
-		for(int j = 0; j < other.getX(); i++)
+		for(int j = 0; j < other.getX(); j++)
 			this->matrix[i][j] += other.matrix[i][j];
 
 	return *this;
@@ -82,7 +84,7 @@ Matrix Matrix::operator*(const Matrix & other)
 		throw exception("Swap the two matrices (A_n*m  x  B_m*p)");
 	
 	Matrix result;
-	int sum;
+	double sum;
 
 	result.initialize(this->getY(), other.getX());
 	
@@ -116,7 +118,7 @@ Matrix Matrix::operator*(const double & other)
 		throw exception("Matrix not initialized");
 
 	for(int i = 0; i < this->getY(); i++)
-		for(int j = 0; j < this->getX(); i++)
+		for(int j = 0; j < this->getX(); j++)
 			this->matrix[i][j] *= other;
 
 	return *this;
@@ -139,7 +141,7 @@ Matrix Matrix::operator-(const Matrix & other)
 		throw exception("Matrix not initialized");
 
 	for(int i = 0; i < other.getY(); i++)
-		for(int j = 0; j < other.getX(); i++)
+		for(int j = 0; j < other.getX(); j++)
 			this->matrix[i][j] -= other.matrix[i][j];
 
 	return *this;
@@ -159,7 +161,7 @@ Matrix Matrix::operator/(const double & other)
 		throw exception("Matrix not initialized");
 
 	for(int i = 0; i < this->getY(); i++)
-		for(int j = 0; j < this->getX(); i++)
+		for(int j = 0; j < this->getX(); j++)
 			this->matrix[i][j] /= other;
 
 	return *this;
@@ -180,7 +182,7 @@ Get the number of columns in matrix
 */
 int Matrix::getX() const
 {
-	return matrix[0].size();
+	return (int) matrix[0].size();
 }
 
 
@@ -189,7 +191,7 @@ Get the number of rows in matrix
 */
 int Matrix::getY() const
 {
-	return matrix.size();
+	return (int) matrix.size();
 }
 
 
@@ -203,8 +205,8 @@ void Matrix::transpose()
 	Matrix t;
 	t.initialize(this->getY(), this->getX());
 	
-	for(int i = 0; i < this->getY; i++)
-		for(int j= 0; j < this->getX; j++)
+	for(int i = 0; i < this->getY(); i++)
+		for(int j= 0; j < this->getX(); j++)
 			t.matrix[i][j] = this->matrix[j][i];
 	
 	*this = t;
@@ -222,7 +224,7 @@ ostream & operator<<(ostream & os, const Matrix & m)
 {
 	for(int i = 0; i < m.getY(); i++)
 	{
-		for(int j = 0; j < m.getX(); i++)
+		for(int j = 0; j < m.getX(); j++)
 		{
 			os << m.matrix[i][j] << " ";
 		}
