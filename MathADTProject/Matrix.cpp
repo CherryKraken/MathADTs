@@ -40,8 +40,8 @@ void Matrix::initialize(int xsize, int ysize)
 {
 	this->matrix.resize(ysize);
 
-	for(int i = 0; i < ysize; i++)
-		this->matrix[i].resize(xsize);
+	for(int i = 0; y < ysize; y++)
+		this->matrix[y].resize(xsize);
 }
 
 
@@ -60,9 +60,9 @@ Matrix Matrix::operator+(const Matrix & other)
 	else if(this->getY() != other.getY() || this->getX() != other.getX())
 		throw exception("Matrices A and B must have the same dimensions");
 
-	for(int i = 0; i < other.getY(); i++)
-		for(int j = 0; j < other.getX(); j++)
-			this->matrix[i][j] += other.matrix[i][j];
+	for(int y = 0; y < other.getY(); y++)
+		for(int x = 0; x < other.getX(); x++)
+			this->matrix[y][x] += other.matrix[y][x];
 
 	return *this;
 }
@@ -84,20 +84,20 @@ Matrix Matrix::operator*(const Matrix & other)
 		throw exception("Swap the two matrices (A_n*m  x  B_m*p)");
 	
 	Matrix result;
-	double sum;
-
 	result.initialize(this->getY(), other.getX());
 	
-	for(int i = 0; i < this->getY(); i++)
+	double sum;
+	
+	for(int y = 0; y < this->getY(); y++)
 	{
-		for(int j = 0; j < other.getX(); j++)
+		for(int x = 0; x < other.getX(); x++)
 		{
-			sum = 0;
-			for(int k = 0; k < other.getY(); k++)
+			sum = 0.0;
+			for(int k = 0; k < this->getX(); k++)
 			{
-				sum += this->matrix[i][k] * other.matrix[k][j];
+				sum += this->matrix[y][k] * other.matrix[k][x];
 			}
-			result.matrix[i][j] = sum;
+			result.matrix[y][x] = sum;
 		}
 	}
 
