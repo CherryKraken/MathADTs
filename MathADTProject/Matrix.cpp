@@ -1,19 +1,24 @@
 #include "Matrix.h"
+#include <iomanip>
 #include <exception>
 
+//#define SIZE_OF(array) (sizeof((array))/sizeof((array[0])))
+
 using namespace std;
+
+
 
 /*
 Initialize and fill the matrix's 2D vector from user input
 Post:
 	matrix is a 2D vector initialized from STDIN
 */
-void Matrix::initialize()
+void Matrix::init()
 {
 	int ysize, xsize;
 	cin >> xsize >> ysize;
 
-	this->initialize(xsize, ysize);
+	this->init(xsize, ysize);
 
 	double val;
 
@@ -36,11 +41,11 @@ Pre:
 Post:
 	matrix is an empty 2D vector of zeros
 */
-void Matrix::initialize(int xsize, int ysize)
+void Matrix::init(int xsize, int ysize)
 {
 	this->matrix.resize(ysize);
 
-	for(int i = 0; y < ysize; y++)
+	for(int y = 0; y < ysize; y++)
 		this->matrix[y].resize(xsize);
 }
 
@@ -84,7 +89,7 @@ Matrix Matrix::operator*(const Matrix & other)
 		throw exception("Swap the two matrices (A_n*m  x  B_m*p)");
 	
 	Matrix result;
-	result.initialize(this->getY(), other.getX());
+	result.init(this->getY(), other.getX());
 	
 	double sum;
 	
@@ -203,7 +208,7 @@ Post:
 void Matrix::transpose()
 {
 	Matrix t;
-	t.initialize(this->getY(), this->getX());
+	t.init(this->getY(), this->getX());
 	
 	for(int i = 0; i < this->getY(); i++)
 		for(int j= 0; j < this->getX(); j++)
@@ -222,11 +227,13 @@ Post: (example)
 */
 ostream & operator<<(ostream & os, const Matrix & m)
 {
+	if(m.isEmpty()) throw exception("Null");
+
 	for(int i = 0; i < m.getY(); i++)
 	{
 		for(int j = 0; j < m.getX(); j++)
 		{
-			os << m.matrix[i][j] << "\t";
+			os << setw(5) << m.matrix[i][j];
 		}
 		os << endl;
 	}

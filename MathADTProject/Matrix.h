@@ -2,17 +2,17 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 
 class Matrix
 {
-	vector<vector<double>> matrix;
+	std::vector< std::vector<double> > matrix;
+	//double **matrix;
 
 public:
 	// Constructors
-	void initialize();
-	void initialize(int xsize, int ysize);
+	
+	void init();
+	void init(int xsize, int ysize);
 
 	// Operators
 	Matrix operator+(const Matrix& other);
@@ -28,5 +28,5 @@ public:
 	void transpose();
 
 	// Friends
-	friend ostream& operator<<(ostream& os, const Matrix& m);
+	friend std::ostream& operator<<(std::ostream& os, const Matrix& m);
 };

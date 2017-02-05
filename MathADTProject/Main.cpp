@@ -9,12 +9,11 @@ int main()
 {
 	try
 	{
-		Matrix a, b;
-		a.initialize();
+		Matrix a;
 		cout << "----------\n";
-		//b.initialize();
-		cout << endl << a;
-		cout << endl << a * 2;
+		cout << "----------\n";
+		cout << endl << a << endl;
+		//cout << endl << a * b;
 	}
 	catch(exception e)
 	{
